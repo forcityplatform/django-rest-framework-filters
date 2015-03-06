@@ -39,7 +39,9 @@ class FilterSet(django_filters.FilterSet):
 
     def __init__(self, *args, **kwargs):
         super(FilterSet, self).__init__(*args, **kwargs)
+        self.updateFilters()
 
+    def updateFilters(self):
         for name, filter_ in six.iteritems(self.filters):
             if isinstance(filter_, filters.RelatedFilter):
                 # Populate our FilterSet fields with the fields we've stored
